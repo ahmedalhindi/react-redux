@@ -1,25 +1,37 @@
 import React, { Component } from 'react'
 import "./CounterOne.css"
-
+import {connect} from 'react-redux';
 class CounterOne extends Component {
-  state = {
-    counter: 0
-  }
+  // state = {
+  //   counter: 0
+  // }
 
-  addOne = () => {
-      this.setState( ( {...copyState} ) => {
-          copyState.counter += 1
-          return copyState
-      })
-  }
+  // addOne = () => {
+  //     this.setState( ( {...copyState} ) => {
+  //         copyState.counter += 1
+  //         return copyState
+  //     })
+  // }
   render() {
     return (
-      <dic className="CounterOne">
-        <h1>{this.state.counter}</h1>
-        <button onClick={this.addOne}>Add One</button>
-      </dic>
+      <div className="CounterOne">
+        <h1>{this.props.counter}</h1>
+        <button onClick={this.props.addOne}>Add One</button>
+      </div>
     )
   }
 }
 
-export default CounterOne
+const mapStateToProps = (state) =>{
+  return{
+    counter: state.counter
+  }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+  return{
+    addOne: ()=> dispatch({type: "INC_COUNTER"})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CounterOne)
