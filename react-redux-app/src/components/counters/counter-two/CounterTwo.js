@@ -17,7 +17,8 @@ class CounterTwo extends Component {
     return (
         <div className="CounterTwo">
             <h1>{this.props.counter}</h1>
-            <button onClick={this.props.addTwo}>Add Two</button>
+            <button onClick={()=>this.props.addTwo(5)}>Add Two</button>
+            
         </div>
     )
   }
@@ -31,7 +32,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) =>{
   return{
-    addTwo: ()=> dispatch({type: "ADD_TO_COUNTER",value:2})
+    addTwo: (num)=> dispatch({type: "ADD_TO_COUNTER",value:num})
   }
 }
 
